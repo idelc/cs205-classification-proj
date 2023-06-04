@@ -32,3 +32,4 @@
 *.app
 
 knn_search
+.idea/
