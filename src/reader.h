@@ -38,22 +38,21 @@ void get_file_dims_csv(string fN, unsigned& rows, unsigned& cols ){
 // should return a double pointer to data
 // this works for the files given in class which are not csv
 // assume array has already been allocated perfectly
-void read_csv(string fName, double store_array[]){
+void read_csv(string fName, double store_array[], unsigned& rows, unsigned& cols){
     ifstream read(fName);
     double temp = 0;
     char comTemp;
     unsigned long cnt = 0, lm = 0;
-    unsigned rows = 0, columns = 0;
 
     if(!read.is_open()){
         cout << "Error opening " << fName << endl;
         exit(1);
     }
-    get_file_dims_csv(fName, rows, columns);
-    lm = (rows*columns) - 1;
+    get_file_dims_csv(fName, rows, cols);
+    lm = (rows*cols) - 1;
 //    cout << "here1" << endl;
     while(read && (cnt < lm)){
-        for(unsigned i = 0; i < (columns - 1); i++){
+        for(unsigned i = 0; i < (cols - 1); i++){
             read >> temp >> comTemp;
             store_array[cnt++] = temp;
 //            cout << temp << endl;
