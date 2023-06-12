@@ -12,7 +12,7 @@
 
 using namespace std;
 
-void get_file_dims_ssf(string fN, unsigned& rows, unsigned& cols ){
+void get_file_dims_csv(string fN, unsigned& rows, unsigned& cols ){
     ifstream read(fN);
     string tLine;
     double temp = 0;
@@ -25,7 +25,7 @@ void get_file_dims_ssf(string fN, unsigned& rows, unsigned& cols ){
     }
 
     getline(read, tLine);
-    cols = count(tLine.begin(), tLine.end(), '.'); // count number of decimals in our data, same as counting rows
+    cols = count(tLine.begin(), tLine.end(), ',') + 1; // count number of decimals in our data, same as counting rows
 
     while(read){
         rows++;
@@ -38,20 +38,31 @@ void get_file_dims_ssf(string fN, unsigned& rows, unsigned& cols ){
 // should return a double pointer to data
 // this works for the files given in class which are not csv
 // assume array has already been allocated perfectly
-void read_ssf(string fName, double store_array[]){
+void read_csv(string fName, double store_array[]){
     ifstream read(fName);
     double temp = 0;
-    unsigned long cnt = 0;
+    char comTemp;
+    unsigned long cnt = 0, lm = 0;
+    unsigned rows = 0, columns = 0;
 
     if(!read.is_open()){
         cout << "Error opening " << fName << endl;
         exit(1);
     }
-
-    while(read){
+    get_file_dims_csv(fName, rows, columns);
+    lm = (rows*columns) - 1;
+//    cout << "here1" << endl;
+    while(read && (cnt < lm)){
+        for(unsigned i = 0; i < (columns - 1); i++){
+            read >> temp >> comTemp;
+            store_array[cnt++] = temp;
+//            cout << temp << endl;
+        }
         read >> temp;
         store_array[cnt++] = temp;
     }
+//    cout << "here2" << endl;
+//    cout << "saw: " << cnt << endl;
 }
 
 #endif
