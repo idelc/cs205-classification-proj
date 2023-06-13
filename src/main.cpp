@@ -1,7 +1,11 @@
-#include "k_nearest_neighbors.h"
+// #include "k_nearest_neighbors.h"
+#include "nn.h"
 #include "menu.h"
 #include "reader.h"
 #include "search_algorithms.h"
+#include <ostream>
+
+int test_nn();
 
 int main(){
     // test bench
@@ -32,5 +36,25 @@ int main(){
     cout << arr1[0] << ' ' << arr1[1] << ' ' << arr1[(row*col)-2] << ' ' << arr1[(row*col)-1] << endl;
     free(arr1);
 
+    test_nn();
+
     return 0;
+}
+
+int test_nn() {
+    string small_file = "data/CS170_small_Data__29.txt";
+
+    file_data fdat;
+    init_file_data(&fdat, small_file);
+
+    cout << "Small File Data has " << fdat.total_dpts << " data points and " <<
+        fdat.dpt_size << " features per data point." << endl;
+
+    // std::vector<int> my_features;
+    // my_features.push_back(1);
+    // my_features.push_back(2);
+    // my_features.push_back(3);
+    // nn_eval(&fdat, my_features);
+
+    return 1;
 }
