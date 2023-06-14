@@ -41,7 +41,7 @@ void mainMenu(){
             filename = "data/norm_small_data-29.csv";
             init_file_data(&fdat, filename);
             runTime = clock();
-            forwardSelection(data, row, col);
+            forwardSelection(&fdat);
             cout << "\nCPU time (linux only): " << static_cast<double>((clock()-runTime))/CLOCKS_PER_SEC << " seconds" << endl;
             free(data);
             break;
@@ -55,7 +55,7 @@ void mainMenu(){
             filename = "data/norm_big_data-2.csv";
             init_file_data(&fdat, filename);
             runTime = clock();
-            forwardSelection(data, row, col);
+            forwardSelection(&fdat);
             cout << "\nCPU time (linux only): " << static_cast<double>((clock()-runTime))/CLOCKS_PER_SEC << " seconds" << endl;
             free(data);
             break;
@@ -69,7 +69,7 @@ void mainMenu(){
             filename = "data/norm_huge_data-21.csv";
             init_file_data(&fdat, filename);
             runTime = clock();
-            forwardSelection(data, row, col);
+            forwardSelection(&fdat);
             cout << "\nCPU time (linux only): " << static_cast<double>((clock()-runTime))/CLOCKS_PER_SEC << " seconds" << endl;
             free(data);
             break;
@@ -83,7 +83,7 @@ void mainMenu(){
             filename = "data/norm_small_data-29.csv";
             init_file_data(&fdat, filename);
             runTime = clock();
-            backwardElimination(data, row, col);
+            backwardElimination(&fdat);
             cout << "\nCPU time (linux only): " << static_cast<double>((clock()-runTime))/CLOCKS_PER_SEC << " seconds" << endl;
             free(data);
             break;
@@ -97,7 +97,7 @@ void mainMenu(){
             filename = "data/norm_big_data-2.csv";
             init_file_data(&fdat, filename);
             runTime = clock();
-            backwardElimination(data, row, col);
+            backwardElimination(&fdat);
             cout << "\nCPU time (linux only): " << static_cast<double>((clock()-runTime))/CLOCKS_PER_SEC << " seconds" << endl;
             free(data);
             break;
@@ -110,7 +110,7 @@ void mainMenu(){
             // read_csv(fileName, data, row1, col);
             init_file_data(&fdat, filename);
             runTime = clock();
-            forwardSelection(data, row, col);
+            forwardSelection(&fdat);
             cout << "\nCPU time (linux only): " << static_cast<double>((clock()-runTime))/CLOCKS_PER_SEC << " seconds" << endl;
             free(data);
             break;
@@ -123,7 +123,7 @@ void mainMenu(){
             // read_csv(fileName, data, row1, col);
             init_file_data(&fdat, filename);
             runTime = clock();
-            backwardElimination(data, row, col);
+            backwardElimination(&fdat);
             cout << "\nCPU time (linux only): " << static_cast<double>((clock()-runTime))/CLOCKS_PER_SEC << " seconds" << endl;
             free(data);
             break;

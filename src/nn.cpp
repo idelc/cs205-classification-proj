@@ -8,7 +8,7 @@
 
 
 // Compute the accuracy using sel_features as a distance metric 
-double nn_eval(file_data *fdat, std::vector<int> sel_feat) {
+double nn_eval(file_data *fdat, std::vector<unsigned> sel_feat) {
     int accuracy = 0;
     // Test each point (by leaving it out)
     for (int i = 0; i < fdat->total_dpts; i++) {
@@ -55,7 +55,7 @@ bool classes_match(file_data *fdat, int x, int y) {
 // compute the euclidean distance between points x and y based on
 // the requested features
 // NOTE: Don't compute the squareroot at the end as it's not necessary
-double compute_distance(file_data *fdat, std::vector<int> sel_feat, int x, int y) {
+double compute_distance(file_data *fdat, std::vector<unsigned> sel_feat, int x, int y) {
     // initialize the distance
     double dist = 0;
     // sum the dot prod of each vector of values

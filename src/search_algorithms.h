@@ -1,23 +1,28 @@
 #ifndef SRCH_ALGO_H
 #define SRCH_ALGO_H
 
+#include "data.h"
+#include "nn.h"
 #include <iostream>
 #include <cstdlib>
 #include <vector>
 
 using namespace std;
 
-double defaultRate(double data_array[], unsigned& rows, unsigned& cols){
+// double defaultRate(double data_array[], unsigned& fdat->total_dpts, unsigned& fdat->dpt_size){
+double defaultRate(file_data *fdat){
     unsigned cnt1=0, cnt2;
-    for(unsigned i = 0; i < rows; i++){
+    // for(unsigned i = 0; i < fdat->total_dpts; i++){
+    for(unsigned i = 0; i < fdat->total_dpts; i++){
 //        cout << "i is: " << i << endl;
-        if(static_cast<int>(data_array[cols*i]) == 1){
+        // if(static_cast<int>(data_array[fdat->dpt_size*i]) == 1){
+        if(static_cast<int>(fdat->data[fdat->dpt_size*i]) == 1){
             // cout << data[i][0] << " is a 1" << endl;
             cnt1++;
         }
     }
-    cnt2 = rows - cnt1;
-    return (cnt1 > cnt2) ? cnt1/static_cast<double>(rows) : cnt2/static_cast<double>(rows);
+    cnt2 = fdat->total_dpts - cnt1;
+    return (cnt1 > cnt2) ? cnt1/static_cast<double>(fdat->total_dpts) : cnt2/static_cast<double>(fdat->total_dpts);
 }
 
 bool isInFeatVec(int nFeat, vector<unsigned> oFeat){
@@ -30,13 +35,15 @@ bool isInFeatVec(int nFeat, vector<unsigned> oFeat){
 }
 
 
-double kValidation_dummy(vector<unsigned>feat, double data[], unsigned& r, unsigned& c){
-    return (rand()%99)/100.0;
-}
+// double kValidation_dummy(vector<unsigned>feat, double data[], unsigned& r, unsigned& c){
+//     return (rand()%99)/100.0;
+// }
 
 // TODO: add extra features for big data set
-void forwardSelection(double data[], unsigned& rows, unsigned& cols){
-    double bestSoFar = defaultRate(data, rows, cols); // find: largest class/ total items
+// void forwardSelection(double data[], unsigned& fdat->total_dpts, unsigned& fdat->dpt_size){
+void forwardSelection(file_data *fdat) {
+    // double bestSoFar = defaultRate(data, fdat->total_dpts, fdat->dpt_size); // find: largest class/ total items
+    double bestSoFar = defaultRate(fdat); // find: largest class/ total items
     double val = 0.0;
     int fToAdd = -1;
     double BestLevel = 0.0;
@@ -47,16 +54,17 @@ void forwardSelection(double data[], unsigned& rows, unsigned& cols){
 
     cout << "Default rate is: " << bestSoFar << endl << endl;
 
-    for(unsigned i = 1; i < cols; i++){ // search through each feature
+    for(unsigned i = 1; i < fdat->dpt_size; i++){ // search through each feature
         fToAdd = -1;
         BestLevel = 0.0;
         cout << "Level " << i << ' ' << endl;
-        for(unsigned j = 1; j < cols; j++){ // start from 1 because feature 0 is ID
+        for(unsigned j = 1; j < fdat->dpt_size; j++){ // start from 1 because feature 0 is ID
             duplicate = isInFeatVec(j, features);
             if(!duplicate){
                 // cout << "Considering feature " << j << "...\t";
                 features.push_back(j);
-                val = kValidation_dummy(features, data, rows, cols); // TODO: Replace when kval done
+                // val = kValidation_dummy(features, data, fdat->total_dpts, fdat->dpt_size); // TODO: Replace when kval done
+                val = nn_eval(fdat, features); // TODO: Replace when kval done
                 cout.precision(5);
                 // cout << "accuracy is " << val << endl;
                 if(val > BestLevel){
@@ -95,25 +103,27 @@ void forwardSelection(double data[], unsigned& rows, unsigned& cols){
     cout << "\nBest Accuracy: " << bestPrint << endl;
 }
 
-void backwardElimination(double data[], unsigned& rows, unsigned& cols){
+// void backwardElimination(double data[], unsigned& fdat->total_dpts, unsigned& fdat->dpt_size){
+void backwardElimination(file_data *fdat) {
     double bestSoFar = 0.0;
     double val = 0.0;
     int fToCut = -1;
     double BestLevel = 0.0;
     int lvl_cnt = 0;
-    vector<unsigned> features(cols-1,0);
+    vector<unsigned> features(fdat->dpt_size-1,0);
     vector<unsigned> tempFeat;
     vector<unsigned> finalFeat;
 
-    for(unsigned i = 0; i < cols-1; i++){
+    for(unsigned i = 0; i < fdat->dpt_size-1; i++){
         features[i] = i;
     }
 
-    bestSoFar = kValidation_dummy(features, data, rows, cols); // TODO: Replace when kval done
+    // bestSoFar = kValidation_dummy(features, data, fdat->total_dpts, fdat->dpt_size); // TODO: Replace when kval done
+    bestSoFar = nn_eval(fdat, features); // TODO: Replace when kval done
 
     cout << "Default rate is: " << bestSoFar << endl << endl;
 
-    while(!features.empty() && (lvl_cnt < cols)){
+    while(!features.empty() && (lvl_cnt < fdat->dpt_size)){
         lvl_cnt++;
         fToCut = -1;
         BestLevel = 0.0;
@@ -121,7 +131,8 @@ void backwardElimination(double data[], unsigned& rows, unsigned& cols){
         for(unsigned j = 0; j < features.size(); j++){
             tempFeat = features;
             tempFeat.erase(tempFeat.begin()+j);
-            val = kValidation_dummy(features, data, rows, cols); // TODO: Replace when kval done
+            // val = kValidation_dummy(features, data, fdat->total_dpts, fdat->dpt_size); // TODO: Replace when kval done
+            val = nn_eval(fdat, features); // TODO: Replace when kval done
             cout.precision(5);
             // cout << "accuracy is " << val << endl;
 //            if(fToCut == -1){
@@ -147,7 +158,6 @@ void backwardElimination(double data[], unsigned& rows, unsigned& cols){
             //     if(features[x]){cout << ' ' << x+1;}
             // }
             // cout << endl;
-
         }
         else { cout << endl;}
 

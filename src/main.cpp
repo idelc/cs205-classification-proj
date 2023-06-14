@@ -24,10 +24,10 @@ int main(){
     read_csv(&fdat, small_file);
     // read_csv(small_file, fdat.data);
 //    cout << arr1[0] << ' ' << arr1[1] << ' ' << arr1[(row*col)-2] << ' ' << arr1[(row*col)-1] << endl;
-    cout << "Default rate: " << defaultRate(arr1,row,col) << endl;
+    cout << "Default rate: " << defaultRate(&fdat) << endl;
     cout << "Testing forward selection\n" << endl;
-    forwardSelection(arr1, row, col);
-    backwardElimination(arr1, row, col);
+    forwardSelection(&fdat);
+    backwardElimination(&fdat);
 
     free(arr1);
 
@@ -105,7 +105,7 @@ int test_nn() {
     // string small_file = "test_data/CS170_large_Data__32.txt";
     // std::vector<int> feat = {3, 7, 6};
     string small_file = "test_data/CS170_large_Data__33.txt";
-    std::vector<int> feat = {4, 5, 10};
+    std::vector<unsigned> feat = {4, 5, 10};
 
     file_data fdat;
     init_file_data(&fdat, small_file);
@@ -124,7 +124,6 @@ int test_nn() {
     cout << "classes are: " << classes_match(&fdat, 1, 1) << endl;
     cout << "classes are: " << classes_match(&fdat, 1, 2) << endl;
     cout << "classes are: " << classes_match(&fdat, 1, 5) << endl;
-
 
     cout << "distances are: " << compute_distance(&fdat, feat, 6, 5) << endl;
     cout << "distances are: " << compute_distance(&fdat, feat, 1, 0) << endl;
