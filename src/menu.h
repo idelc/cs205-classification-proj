@@ -24,8 +24,8 @@ void mainMenu(){
     cout << endl;
 
     unsigned answer = 0;
-    unsigned row, col;
-    double* data;
+//    unsigned row, col;
+//    double* data;
     string filename = "";
     clock_t runTime;
     file_data fdat;
@@ -43,7 +43,7 @@ void mainMenu(){
             runTime = clock();
             forwardSelection(&fdat);
             cout << "\nCPU time (linux only): " << static_cast<double>((clock()-runTime))/CLOCKS_PER_SEC << " seconds" << endl;
-            free(data);
+            free(fdat.data);
             break;
         case 2:
             cout << "Running big forward...";
@@ -57,7 +57,7 @@ void mainMenu(){
             runTime = clock();
             forwardSelection(&fdat);
             cout << "\nCPU time (linux only): " << static_cast<double>((clock()-runTime))/CLOCKS_PER_SEC << " seconds" << endl;
-            free(data);
+            free(fdat.data);
             break;
         case 3:
             cout << "Running huge forward...";
@@ -71,7 +71,7 @@ void mainMenu(){
             runTime = clock();
             forwardSelection(&fdat);
             cout << "\nCPU time (linux only): " << static_cast<double>((clock()-runTime))/CLOCKS_PER_SEC << " seconds" << endl;
-            free(data);
+            free(fdat.data);
             break;
         case 4:
             cout << "Running small backward...";
@@ -85,7 +85,7 @@ void mainMenu(){
             runTime = clock();
             backwardElimination(&fdat);
             cout << "\nCPU time (linux only): " << static_cast<double>((clock()-runTime))/CLOCKS_PER_SEC << " seconds" << endl;
-            free(data);
+            free(fdat.data);
             break;
         case 5:
             cout << "Running big backward...";
@@ -99,7 +99,7 @@ void mainMenu(){
             runTime = clock();
             backwardElimination(&fdat);
             cout << "\nCPU time (linux only): " << static_cast<double>((clock()-runTime))/CLOCKS_PER_SEC << " seconds" << endl;
-            free(data);
+            free(fdat.data);
             break;
         case 6:
             cout << "Name of file (ex: data/xx.csv)";
@@ -112,7 +112,7 @@ void mainMenu(){
             runTime = clock();
             forwardSelection(&fdat);
             cout << "\nCPU time (linux only): " << static_cast<double>((clock()-runTime))/CLOCKS_PER_SEC << " seconds" << endl;
-            free(data);
+            free(fdat.data);
             break;
         case 7:
             cout << "Name of file (ex: data/xx.csv)";
@@ -125,7 +125,7 @@ void mainMenu(){
             runTime = clock();
             backwardElimination(&fdat);
             cout << "\nCPU time (linux only): " << static_cast<double>((clock()-runTime))/CLOCKS_PER_SEC << " seconds" << endl;
-            free(data);
+            free(fdat.data);
             break;
         default:
             cout << "Bye!" << endl;

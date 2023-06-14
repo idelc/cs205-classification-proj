@@ -13,9 +13,9 @@
 using namespace std;
 
 struct file_data {
-    double *data;
     unsigned dpt_size;
     unsigned total_dpts;
+    double *data;
 };
 
 // initialize the file_data struct

@@ -31,7 +31,7 @@ double defaultRate(file_data *fdat){
     return (cnt1 > cnt2) ? cnt1/total_dpts : cnt2/total_dpts;
 }
 
-bool isInFeatVec(int nFeat, vector<unsigned> oFeat){
+bool isInFeatVec(unsigned nFeat, vector<unsigned> oFeat){
     for(unsigned i = 0; i < oFeat.size(); i++){
         if(oFeat[i] == nFeat){
             return true;
@@ -120,7 +120,7 @@ void backwardElimination(file_data *fdat) {
     double val = 0.0;
     int fToCut = -1;
     double BestLevel = 0.0;
-    int lvl_cnt = 0;
+    unsigned lvl_cnt = 0;
     vector<unsigned> features(fdat->dpt_size-1,0);
     vector<unsigned> tempFeat(fdat->dpt_size-1,0);
     vector<unsigned> finalFeat(fdat->dpt_size-1,0);

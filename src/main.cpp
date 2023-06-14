@@ -6,8 +6,14 @@
 #include <ostream>
 
 int test_nn();
+int testBench();
 
 int main(){
+    mainMenu();
+    return 0;
+}
+
+int testBench(){
 //     test bench for reader and default value
     unsigned row = 0, col = 0;
     string small_file = "data/norm_small_data-29.csv";

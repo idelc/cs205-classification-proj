@@ -67,7 +67,7 @@ void init_file_data(file_data *fdat, std::string filename) {
 void get_file_dims_csv(file_data *fdat, string fN){
     ifstream read(fN);
     string tLine;
-    double temp = 0;
+//    double temp = 0;
     unsigned rows = 0;
     unsigned cols = 0;
 
@@ -77,7 +77,7 @@ void get_file_dims_csv(file_data *fdat, string fN){
     }
 
     getline(read, tLine);
-    cols = count(tLine.begin(), tLine.end(), ',') + 1; // count number of decimals in our data, same as counting rows
+    cols = count(tLine.begin(), tLine.end(), ',') + 1; // count number of commas + 1 in our data, same as counting rows
 
     while(read){
         rows++;
