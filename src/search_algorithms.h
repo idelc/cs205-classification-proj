@@ -12,17 +12,23 @@ using namespace std;
 // double defaultRate(double data_array[], unsigned& fdat->total_dpts, unsigned& fdat->dpt_size){
 double defaultRate(file_data *fdat){
     unsigned cnt1=0, cnt2;
+    double total_dpts = fdat->total_dpts;
+    double dpt_size = fdat->dpt_size;
+    // cout << "total points: " << total_dpts << " and dpt_size: " << dpt_size << endl;
     // for(unsigned i = 0; i < fdat->total_dpts; i++){
     for(unsigned i = 0; i < fdat->total_dpts; i++){
 //        cout << "i is: " << i << endl;
+        // cout << fdat->data[fdat->dpt_size*i] << endl;
         // if(static_cast<int>(data_array[fdat->dpt_size*i]) == 1){
         if(static_cast<int>(fdat->data[fdat->dpt_size*i]) == 1){
             // cout << data[i][0] << " is a 1" << endl;
+            // cout << fdat->data[fdat->dpt_size*i] << endl;
             cnt1++;
         }
     }
     cnt2 = fdat->total_dpts - cnt1;
-    return (cnt1 > cnt2) ? cnt1/static_cast<double>(fdat->total_dpts) : cnt2/static_cast<double>(fdat->total_dpts);
+    // return (cnt1 > cnt2) ? cnt1/static_cast<double>(fdat->total_dpts) : cnt2/static_cast<double>(fdat->total_dpts);
+    return (cnt1 > cnt2) ? cnt1/total_dpts : cnt2/total_dpts;
 }
 
 bool isInFeatVec(int nFeat, vector<unsigned> oFeat){

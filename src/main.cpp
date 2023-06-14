@@ -18,8 +18,9 @@ int main(){
     // get_file_dims_csv(small_file, row, col);
     get_file_dims_csv(&fdat, small_file);
     cout << "For file " << small_file << " got: " << row << " rows and " << col << " columns" << endl;
-    double* arr1;
-    fdat.data = (double *) malloc(sizeof(double)*row*col);
+    // double* arr1;
+    // fdat.data = (double *) malloc(sizeof(double)*row*col);
+    fdat.data = (double *) malloc(sizeof(double)*fdat.dpt_size*fdat.total_dpts);
     // read_csv(small_file,arr1, row, col);
     read_csv(&fdat, small_file);
     // read_csv(small_file, fdat.data);
@@ -47,7 +48,7 @@ int main(){
 //    cout << "Default rate: " << defaultRate(arr1,row,col) << endl;
 //    free(arr1);
 
-    test_nn();
+    // test_nn();
 
     return 0;
 }
