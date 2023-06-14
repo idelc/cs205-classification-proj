@@ -9,10 +9,10 @@ COMMON_FLAGS := -Wall -Wextra -Werror
 .PHONY: all clean test
 
 all:
-	$(CC)  -o knn_search src/main.cpp
+	$(CC)  -o nn_search src/main.cpp src/data.cpp src/nn.cpp
 
 clean:
-	$(RM) -r Trace.txt knn_search solution_path.txt
+	$(RM) -r Trace.txt nn_search solution_path.txt
 
 test: all
-	./knn_search
+	./nn_search
