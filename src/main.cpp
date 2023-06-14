@@ -9,27 +9,27 @@ int test_nn();
 
 int main(){
 //     test bench for reader and default value
-    unsigned row = 0, col = 0;
-    string small_file = "data/norm_small_data-29.csv";
-    string large_file = "data/norm_big_data-2.csv";
-    string huge_file = "data/norm_huge_data-21.csv";
-
-    file_data fdat;
-    // get_file_dims_csv(small_file, row, col);
-    get_file_dims_csv(&fdat, small_file);
-    cout << "For file " << small_file << " got: " << row << " rows and " << col << " columns" << endl;
-    double* arr1;
-    arr1 = (double *) malloc(sizeof(double)*row*col);
-    // read_csv(small_file,arr1, row, col);
-    read_csv(&fdat, small_file);
-    // read_csv(small_file, fdat.data);
-//    cout << arr1[0] << ' ' << arr1[1] << ' ' << arr1[(row*col)-2] << ' ' << arr1[(row*col)-1] << endl;
-    cout << "Default rate: " << defaultRate(arr1,row,col) << endl;
-    cout << "Testing forward selection\n" << endl;
-    forwardSelection(arr1, row, col);
-    backwardElimination(arr1, row, col);
-
-    free(arr1);
+//     unsigned row = 0, col = 0;
+//     string small_file = "data/norm_small_data-29.csv";
+//     string large_file = "data/norm_big_data-2.csv";
+//     string huge_file = "data/norm_huge_data-21.csv";
+//
+//     file_data fdat;
+//     // get_file_dims_csv(small_file, row, col);
+//     get_file_dims_csv(&fdat, small_file);
+//     cout << "For file " << small_file << " got: " << row << " rows and " << col << " columns" << endl;
+//     double* arr1;
+//     arr1 = (double *) malloc(sizeof(double)*row*col);
+//     // read_csv(small_file,arr1, row, col);
+//     read_csv(&fdat, small_file);
+//     // read_csv(small_file, fdat.data);
+// //    cout << arr1[0] << ' ' << arr1[1] << ' ' << arr1[(row*col)-2] << ' ' << arr1[(row*col)-1] << endl;
+//     cout << "Default rate: " << defaultRate(arr1,row,col) << endl;
+//     cout << "Testing forward selection\n" << endl;
+//     forwardSelection(arr1, row, col);
+//     backwardElimination(arr1, row, col);
+//
+//     free(arr1);
 
 //    get_file_dims_csv(large_file, row, col);
 //    cout << "For file " << large_file << " got: " << row << " rows and " << col << " columns" << endl;
@@ -93,8 +93,8 @@ int main(){
 //}
 
 int test_nn() {
-    string small_file = "data/CS170_small_Data__29.txt";
-    std::vector<int> feat = {1, 3, 5};
+    // string small_file = "data/CS170_small_Data__29.txt";
+    // std::vector<int> feat = {1, 3, 5};
 
     // NOTE: THESE ARE PROVIDED TEST SAMPLES
     // DO NOT EDIT THESE
@@ -104,8 +104,8 @@ int test_nn() {
     // std::vector<int> feat = {8, 7, 3};
     // string small_file = "test_data/CS170_large_Data__32.txt";
     // std::vector<int> feat = {3, 7, 6};
-    // string small_file = "test_data/CS170_large_Data__33.txt";
-    // std::vector<int> feat = {4, 5, 10};
+    string small_file = "test_data/CS170_large_Data__33.txt";
+    std::vector<int> feat = {4, 5, 10};
 
     file_data fdat;
     init_file_data(&fdat, small_file);
