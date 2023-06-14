@@ -5,7 +5,7 @@
 #include <ctime>
 #include <string>
 
-#include "reader.h"
+#include "data.h"
 #include "search_algorithms.h"
 
 using namespace std;

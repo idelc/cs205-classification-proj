@@ -1,7 +1,7 @@
 // #include "k_nearest_neighbors.h"
 #include "nn.h"
 #include "menu.h"
-#include "reader.h"
+#include "data.h"
 #include "search_algorithms.h"
 #include <ostream>
 
@@ -14,11 +14,15 @@ int main(){
     string large_file = "data/norm_big_data-2.csv";
     string huge_file = "data/norm_huge_data-21.csv";
 
-    get_file_dims_csv(small_file, row, col);
+    file_data fdat;
+    // get_file_dims_csv(small_file, row, col);
+    get_file_dims_csv(&fdat, small_file);
     cout << "For file " << small_file << " got: " << row << " rows and " << col << " columns" << endl;
     double* arr1;
     arr1 = (double *) malloc(sizeof(double)*row*col);
-    read_csv(small_file,arr1, row, col);
+    // read_csv(small_file,arr1, row, col);
+    read_csv(&fdat, small_file);
+    // read_csv(small_file, fdat.data);
 //    cout << arr1[0] << ' ' << arr1[1] << ' ' << arr1[(row*col)-2] << ' ' << arr1[(row*col)-1] << endl;
     cout << "Default rate: " << defaultRate(arr1,row,col) << endl;
     cout << "Testing forward selection\n" << endl;

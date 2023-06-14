@@ -1,17 +1,11 @@
 #include "nn.h"
-#include "reader.h"
+#include "data.h"
 #include <float.h>
 #include <ostream>
 
 #define CLASS_INDEX 0
 // #define DEBUG_MODE
 
-// Initialize the file data struct
-void init_file_data(file_data *fdat, std::string filename) {
-    get_file_dims_ssf(filename, fdat->total_dpts, fdat->dpt_size);
-    fdat->data = (double *)malloc(sizeof(double) * fdat->dpt_size * fdat->total_dpts);
-    read_ssf(filename, fdat->data);
-}
 
 // Compute the accuracy using sel_features as a distance metric 
 double nn_eval(file_data *fdat, std::vector<int> sel_feat) {

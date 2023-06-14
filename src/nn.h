@@ -2,16 +2,8 @@
 #define NN_H
 
 #include <vector>
-// #include "reader.h"
+#include "data.h"
 
-struct file_data {
-    double *data;
-    unsigned dpt_size;
-    unsigned total_dpts;
-};
-
-// initialize the file data struct
-void init_file_data(file_data *, std::string);
 
 // Take in some data, which features you wish to select
 // And the total number of data points that need to be processed
