@@ -5,7 +5,7 @@
 #include <ctime>
 #include <string>
 
-#include "reader.h"
+#include "data.h"
 #include "search_algorithms.h"
 
 using namespace std;
@@ -26,19 +26,22 @@ void mainMenu(){
     unsigned answer = 0;
     unsigned row, col;
     double* data;
-    string fileName = "";
+    string filename = "";
     clock_t runTime;
+    file_data fdat;
     cin >> answer;
     switch (answer){
         case 1:
             cout << "Running small forward...";
 //            cin >> fileName;
             cout << endl;
-            get_file_dims_csv("data/norm_small_data-29.csv", row1, col);
-            data = (double *) malloc(sizeof(double)*row*col);
-            read_csv("data/norm_small_data-29.csv", data, row1, col);
+            // get_file_dims_csv("data/norm_small_data-29.csv", row1, col);
+            // data = (double *) malloc(sizeof(double)*row*col);
+            // read_csv("data/norm_small_data-29.csv", data, row1, col);
+            filename = "data/norm_small_data-29.csv";
+            init_file_data(&fdat, filename);
             runTime = clock();
-            forwardSelection(data, row, col);
+            forwardSelection(&fdat);
             cout << "\nCPU time (linux only): " << static_cast<double>((clock()-runTime))/CLOCKS_PER_SEC << " seconds" << endl;
             free(data);
             break;
@@ -46,11 +49,13 @@ void mainMenu(){
             cout << "Running big forward...";
 //            cin >> fileName;
             cout << endl;
-            get_file_dims_csv("data/norm_big_data-2.csv", row1, col);
-            data = (double *) malloc(sizeof(double)*row*col);
-            read_csv("data/norm_big_data-2.csv", data, row1, col);
+            // get_file_dims_csv("data/norm_big_data-2.csv", row1, col);
+            // data = (double *) malloc(sizeof(double)*row*col);
+            // read_csv("data/norm_big_data-2.csv", data, row1, col);
+            filename = "data/norm_big_data-2.csv";
+            init_file_data(&fdat, filename);
             runTime = clock();
-            forwardSelection(data, row, col);
+            forwardSelection(&fdat);
             cout << "\nCPU time (linux only): " << static_cast<double>((clock()-runTime))/CLOCKS_PER_SEC << " seconds" << endl;
             free(data);
             break;
@@ -58,11 +63,13 @@ void mainMenu(){
             cout << "Running huge forward...";
 //            cin >> fileName;
             cout << endl;
-            get_file_dims_csv("data/norm_huge_data-21.csv", row1, col);
-            data = (double *) malloc(sizeof(double)*row*col);
-            read_csv("data/norm_huge_data-21.csv", data, row1, col);
+            // get_file_dims_csv("data/norm_huge_data-21.csv", row1, col);
+            // data = (double *) malloc(sizeof(double)*row*col);
+            // read_csv("data/norm_huge_data-21.csv", data, row1, col);
+            filename = "data/norm_huge_data-21.csv";
+            init_file_data(&fdat, filename);
             runTime = clock();
-            forwardSelection(data, row, col);
+            forwardSelection(&fdat);
             cout << "\nCPU time (linux only): " << static_cast<double>((clock()-runTime))/CLOCKS_PER_SEC << " seconds" << endl;
             free(data);
             break;
@@ -70,11 +77,13 @@ void mainMenu(){
             cout << "Running small backward...";
 //            cin >> fileName;
             cout << endl;
-            get_file_dims_csv("data/norm_small_data-29.csv", row1, col);
-            data = (double *) malloc(sizeof(double)*row*col);
-            read_csv("data/norm_small_data-29.csv", data, row1, col);
+            // get_file_dims_csv("data/norm_small_data-29.csv", row1, col);
+            // data = (double *) malloc(sizeof(double)*row*col);
+            // read_csv("data/norm_small_data-29.csv", data, row1, col);
+            filename = "data/norm_small_data-29.csv";
+            init_file_data(&fdat, filename);
             runTime = clock();
-            backwardElimination(data, row, col);
+            backwardElimination(&fdat);
             cout << "\nCPU time (linux only): " << static_cast<double>((clock()-runTime))/CLOCKS_PER_SEC << " seconds" << endl;
             free(data);
             break;
@@ -82,35 +91,39 @@ void mainMenu(){
             cout << "Running big backward...";
 //            cin >> fileName;
             cout << endl;
-            get_file_dims_csv("data/norm_big_data-2.csv", row1, col);
-            data = (double *) malloc(sizeof(double)*row*col);
-            read_csv("data/norm_big_data-2.csv", data, row1, col);
+            // get_file_dims_csv("data/norm_big_data-2.csv", row1, col);
+            // data = (double *) malloc(sizeof(double)*row*col);
+            // read_csv("data/norm_big_data-2.csv", data, row1, col);
+            filename = "data/norm_big_data-2.csv";
+            init_file_data(&fdat, filename);
             runTime = clock();
-            backwardElimination(data, row, col);
+            backwardElimination(&fdat);
             cout << "\nCPU time (linux only): " << static_cast<double>((clock()-runTime))/CLOCKS_PER_SEC << " seconds" << endl;
             free(data);
             break;
         case 6:
             cout << "Name of file (ex: data/xx.csv)";
-            cin >> fileName;
+            cin >> filename;
             cout << endl;
-            get_file_dims_csv(fileName, row1, col);
-            data = (double *) malloc(sizeof(double)*row*col);
-            read_csv(fileName, data, row1, col);
+            // get_file_dims_csv(fileName, row1, col);
+            // data = (double *) malloc(sizeof(double)*row*col);
+            // read_csv(fileName, data, row1, col);
+            init_file_data(&fdat, filename);
             runTime = clock();
-            forwardSelection(data, row, col);
+            forwardSelection(&fdat);
             cout << "\nCPU time (linux only): " << static_cast<double>((clock()-runTime))/CLOCKS_PER_SEC << " seconds" << endl;
             free(data);
             break;
         case 7:
             cout << "Name of file (ex: data/xx.csv)";
-            cin >> fileName;
+            cin >> filename;
             cout << endl;
-            get_file_dims_csv(fileName, row1, col);
-            data = (double *) malloc(sizeof(double)*row*col);
-            read_csv(fileName, data, row1, col);
+            // get_file_dims_csv(fileName, row1, col);
+            // data = (double *) malloc(sizeof(double)*row*col);
+            // read_csv(fileName, data, row1, col);
+            init_file_data(&fdat, filename);
             runTime = clock();
-            backwardElimination(data, row, col);
+            backwardElimination(&fdat);
             cout << "\nCPU time (linux only): " << static_cast<double>((clock()-runTime))/CLOCKS_PER_SEC << " seconds" << endl;
             free(data);
             break;

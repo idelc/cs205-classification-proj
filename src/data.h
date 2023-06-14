@@ -12,6 +12,20 @@
 
 using namespace std;
 
+struct file_data {
+    double *data;
+    unsigned dpt_size;
+    unsigned total_dpts;
+};
+
+// initialize the file_data struct
+void init_file_data(file_data *, string);
+
+// void get_file_dims_csv(string fN, unsigned& rows, unsigned& cols);
+void get_file_dims_csv(file_data *, string);
+void read_csv(file_data *, string);
+
+#endif
 // void get_file_dims_csv(string fN, unsigned& rows, unsigned& cols ){
 //     ifstream read(fN);
 //     string tLine;
@@ -65,8 +79,6 @@ using namespace std;
 // }
 
 // #endif
-void get_file_dims_ssf(string fN, unsigned& rows, unsigned& cols );
-void read_ssf(string fName, double store_array[]);
 
 // void get_file_dims_ssf(string fN, unsigned& rows, unsigned& cols ){
 //     ifstream read(fN);
@@ -110,4 +122,3 @@ void read_ssf(string fName, double store_array[]);
 //     }
 // }
 
-#endif
