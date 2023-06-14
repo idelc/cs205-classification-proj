@@ -25,10 +25,10 @@ int main(){
     read_csv(&fdat, small_file);
     // read_csv(small_file, fdat.data);
 //    cout << arr1[0] << ' ' << arr1[1] << ' ' << arr1[(row*col)-2] << ' ' << arr1[(row*col)-1] << endl;
-    cout << "Default rate: " << defaultRate(&fdat) << endl;
-    cout << "Testing forward selection\n" << endl;
+//    cout << "Default rate: " << defaultRate(&fdat) << endl;
+//    cout << "Testing forward selection\n" << endl;
     forwardSelection(&fdat);
-    backwardElimination(&fdat);
+//    backwardElimination(&fdat);
 
     free(fdat.data);
 
