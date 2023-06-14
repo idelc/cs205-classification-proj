@@ -6,8 +6,14 @@
 #include <ostream>
 
 int test_nn();
+int testBench();
 
 int main(){
+    mainMenu();
+    return 0;
+}
+
+int testBench(){
 //     test bench for reader and default value
     unsigned row = 0, col = 0;
     string small_file = "data/norm_small_data-29.csv";
@@ -25,10 +31,10 @@ int main(){
     read_csv(&fdat, small_file);
     // read_csv(small_file, fdat.data);
 //    cout << arr1[0] << ' ' << arr1[1] << ' ' << arr1[(row*col)-2] << ' ' << arr1[(row*col)-1] << endl;
-    cout << "Default rate: " << defaultRate(&fdat) << endl;
-    cout << "Testing forward selection\n" << endl;
+//    cout << "Default rate: " << defaultRate(&fdat) << endl;
+//    cout << "Testing forward selection\n" << endl;
     forwardSelection(&fdat);
-    backwardElimination(&fdat);
+//    backwardElimination(&fdat);
 
     free(fdat.data);
 

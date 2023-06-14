@@ -13,7 +13,7 @@ using namespace std;
 double defaultRate(file_data *fdat){
     unsigned cnt1=0, cnt2;
     double total_dpts = fdat->total_dpts;
-    double dpt_size = fdat->dpt_size;
+//    double dpt_size = fdat->dpt_size;
     // cout << "total points: " << total_dpts << " and dpt_size: " << dpt_size << endl;
     // for(unsigned i = 0; i < fdat->total_dpts; i++){
     for(unsigned i = 0; i < fdat->total_dpts; i++){
@@ -31,7 +31,7 @@ double defaultRate(file_data *fdat){
     return (cnt1 > cnt2) ? cnt1/total_dpts : cnt2/total_dpts;
 }
 
-bool isInFeatVec(int nFeat, vector<unsigned> oFeat){
+bool isInFeatVec(unsigned nFeat, vector<unsigned> oFeat){
     for(unsigned i = 0; i < oFeat.size(); i++){
         if(oFeat[i] == nFeat){
             return true;
@@ -52,6 +52,7 @@ void forwardSelection(file_data *fdat) {
     double bestSoFar = defaultRate(fdat); // find: largest class/ total items
     double val = 0.0;
     int fToAdd = -1;
+    int drop = 0;
     double BestLevel = 0.0;
     bool duplicate;
 
@@ -60,7 +61,7 @@ void forwardSelection(file_data *fdat) {
 
     cout << "Default rate is: " << bestSoFar << endl << endl;
 
-    for(unsigned i = 1; i < fdat->dpt_size; i++){ // search through each feature
+    for(unsigned i = 1; (i < fdat->dpt_size) && (drop < 2); i++){ // search through each feature
         fToAdd = -1;
         BestLevel = 0.0;
         cout << "Level " << i << ' ' << endl;
@@ -69,8 +70,8 @@ void forwardSelection(file_data *fdat) {
             if(!duplicate){
                 // cout << "Considering feature " << j << "...\t";
                 features.push_back(j);
-                // val = kValidation_dummy(features, data, fdat->total_dpts, fdat->dpt_size); // TODO: Replace when kval done
-                val = nn_eval(fdat, features); // TODO: Replace when kval done
+                // val = kValidation_dummy(features, data, fdat->total_dpts, fdat->dpt_size);
+                val = nn_eval(fdat, features);
                 cout.precision(5);
                 // cout << "accuracy is " << val << endl;
                 if(val > BestLevel){
@@ -90,6 +91,10 @@ void forwardSelection(file_data *fdat) {
             features.push_back(fToAdd); // update final vectors
         }
         else { cout << endl;}
+        if(BestLevel < bestSoFar){
+            drop++;
+            cout << "detected drop " << drop << ", will terminate after 2" << endl;
+        }
     }
 
     cout << "\nBest Features are:";
@@ -115,17 +120,16 @@ void backwardElimination(file_data *fdat) {
     double val = 0.0;
     int fToCut = -1;
     double BestLevel = 0.0;
-    int lvl_cnt = 0;
+    unsigned lvl_cnt = 0;
     vector<unsigned> features(fdat->dpt_size-1,0);
-    vector<unsigned> tempFeat;
-    vector<unsigned> finalFeat;
+    vector<unsigned> tempFeat(fdat->dpt_size-1,0);
+    vector<unsigned> finalFeat(fdat->dpt_size-1,0);
 
     for(unsigned i = 0; i < fdat->dpt_size-1; i++){
-        features[i] = i;
+        features[i] = i+1;
     }
 
-    // bestSoFar = kValidation_dummy(features, data, fdat->total_dpts, fdat->dpt_size); // TODO: Replace when kval done
-    bestSoFar = nn_eval(fdat, features); // TODO: Replace when kval done
+    bestSoFar = nn_eval(fdat, features);
 
     cout << "Default rate is: " << bestSoFar << endl << endl;
 
@@ -137,43 +141,34 @@ void backwardElimination(file_data *fdat) {
         for(unsigned j = 0; j < features.size(); j++){
             tempFeat = features;
             tempFeat.erase(tempFeat.begin()+j);
-            // val = kValidation_dummy(features, data, fdat->total_dpts, fdat->dpt_size); // TODO: Replace when kval done
-            val = nn_eval(fdat, features); // TODO: Replace when kval done
+
+            // val = kValidation_dummy(features, data, fdat->total_dpts, fdat->dpt_size);
+            val = nn_eval(fdat, tempFeat);
             cout.precision(5);
-            // cout << "accuracy is " << val << endl;
-//            if(fToCut == -1){
-//                fToCut==
-//            }
+
             if(val > BestLevel){
                 BestLevel = val;
                 fToCut = j;
             }
-            if(bestSoFar < BestLevel){
-                bestSoFar = BestLevel;
-                //finalFeat.clear();
-                finalFeat = tempFeat;
-            }
+
         }
-        if(fToCut > 0){
+        if(fToCut >= 0){
             cout << "On level " << lvl_cnt << ", removed feature " << features.at(fToCut) << " with new accuracy "<< BestLevel << endl << endl;
 
             features.erase(features.begin()+fToCut);
+            if(bestSoFar < BestLevel){
+                bestSoFar = BestLevel;
+                finalFeat = features;
+            }
 
-            // cout << "\ncurrent features are: ";
-            // for(unsigned x = 0; x<features.size();x++){
-            //     if(features[x]){cout << ' ' << x+1;}
-            // }
-            // cout << endl;
         }
         else { cout << endl;}
 
     }
 
-    cout << "\nBest Features are:";
+    cout << "\nBest Features are: ";
     for(unsigned n = 0; n<finalFeat.size(); n++){
-        if(finalFeat[n]){
-            cout << ' ' << n+1;
-        }
+        cout << finalFeat[n] << ' ';
     }
     cout << "\nBest Accuracy: " << bestSoFar << endl;
 

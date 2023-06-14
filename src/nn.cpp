@@ -11,14 +11,14 @@
 double nn_eval(file_data *fdat, std::vector<unsigned> sel_feat) {
     int accuracy = 0;
     // Test each point (by leaving it out)
-    for (int i = 0; i < fdat->total_dpts; i++) {
+    for (unsigned i = 0; i < fdat->total_dpts; i++) {
         #ifdef DEBUG_MODE
           cout << "Starting new point: Class: " << get_data_at(fdat, i, 0) << endl;
         #endif
         int closest_pt = 0;
         double min_dist = DBL_MAX;
         // find the closest point to the target point at idx i
-        for(int j = 1; j < fdat->total_dpts; j++) {
+        for(unsigned j = 1; j < fdat->total_dpts; j++) {
             // skip the target point from consideration
             if (j == i) continue;
             // find the distance based on select features
