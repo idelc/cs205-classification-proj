@@ -131,7 +131,8 @@ void backwardElimination(file_data *fdat) {
 
     bestSoFar = nn_eval(fdat, features);
 
-    cout << "Default rate is: " << bestSoFar << endl << endl;
+    cout << "Default rate is: " << defaultRate(fdat) << endl;
+    cout << "Root of the tree (all features): " << bestSoFar << endl << endl;
 
     while(!features.empty() && (lvl_cnt < fdat->dpt_size)){
         lvl_cnt++;
