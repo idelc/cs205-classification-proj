@@ -108,7 +108,7 @@ void mainMenu(){
                 free(fdat.data);
                 break;
             case 6:
-                cout << "Name of file (ex: data/xx.csv)";
+                cout << "Name of file (ex: data/xx.csv): ";
                 cin >> filename;
                 cout << endl;
                 // get_file_dims_csv(fileName, row1, col);
@@ -122,7 +122,7 @@ void mainMenu(){
                 free(fdat.data);
                 break;
             case 7:
-                cout << "Name of file (ex: data/xx.csv)";
+                cout << "Name of file (ex: data/xx.csv): ";
                 cin >> filename;
                 cout << endl;
                 // get_file_dims_csv(fileName, row1, col);
