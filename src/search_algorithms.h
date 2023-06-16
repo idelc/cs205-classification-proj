@@ -91,10 +91,10 @@ void forwardSelection(file_data *fdat) {
             features.push_back(fToAdd); // update final vectors
         }
         else { cout << endl;}
-        // if(BestLevel < bestSoFar){
-        //     drop++;
-        //     cout << "detected drop " << drop << ", will terminate after 2" << endl;
-        // }
+        if(BestLevel < bestSoFar){
+            drop++;
+            cout << "detected drop " << drop << ", will terminate after 2" << endl;
+        }
     }
 
     cout << "\nBest Features are:";
