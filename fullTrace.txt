@@ -23,16 +23,32 @@ On level 2, added feature 10 with accuracy 0.973
 Level 3
 On level 3, added feature 5 with accuracy 0.944
 
-detected drop 1, will terminate after 2
 Level 4
 On level 4, added feature 8 with accuracy 0.919
 
-detected drop 2, will terminate after 2
+Level 5
+On level 5, added feature 7 with accuracy 0.889
+
+Level 6
+On level 6, added feature 9 with accuracy 0.862
+
+Level 7
+On level 7, added feature 4 with accuracy 0.834
+
+Level 8
+On level 8, added feature 2 with accuracy 0.811
+
+Level 9
+On level 9, added feature 1 with accuracy 0.786
+
+Level 10
+On level 10, added feature 3 with accuracy 0.774
+
 
 Best Features are: 6 10
 Best Accuracy: 0.973
 
-CPU time (linux only): 1.0442 seconds
+CPU time (linux only): 1.7697 seconds
 
 Welcome to the feature search program for CS205, Spring 2023
 
@@ -59,16 +75,62 @@ On level 2, added feature 9 with accuracy 0.967
 Level 3
 On level 3, added feature 8 with accuracy 0.946
 
-detected drop 1, will terminate after 2
 Level 4
 On level 4, added feature 2 with accuracy 0.9275
 
-detected drop 2, will terminate after 2
+Level 5
+On level 5, added feature 5 with accuracy 0.8965
+
+Level 6
+On level 6, added feature 11 with accuracy 0.8645
+
+Level 7
+On level 7, added feature 4 with accuracy 0.84
+
+Level 8
+On level 8, added feature 12 with accuracy 0.818
+
+Level 9
+On level 9, added feature 16 with accuracy 0.7965
+
+Level 10
+On level 10, added feature 13 with accuracy 0.7835
+
+Level 11
+On level 11, added feature 1 with accuracy 0.767
+
+Level 12
+On level 12, added feature 7 with accuracy 0.757
+
+Level 13
+On level 13, added feature 14 with accuracy 0.745
+
+Level 14
+On level 14, added feature 10 with accuracy 0.7315
+
+Level 15
+On level 15, added feature 20 with accuracy 0.7345
+
+Level 16
+On level 16, added feature 3 with accuracy 0.722
+
+Level 17
+On level 17, added feature 18 with accuracy 0.7175
+
+Level 18
+On level 18, added feature 17 with accuracy 0.7225
+
+Level 19
+On level 19, added feature 6 with accuracy 0.709
+
+Level 20
+On level 20, added feature 19 with accuracy 0.7055
+
 
 Best Features are: 15 9
 Best Accuracy: 0.967
 
-CPU time (linux only): 8.974 seconds
+CPU time (linux only): 32.209 seconds
 
 Welcome to the feature search program for CS205, Spring 2023
 
@@ -104,7 +166,7 @@ detected drop 2, will terminate after 2
 Best Features are: 51 37
 Best Accuracy: 0.974
 
-CPU time (linux only): 189.23 seconds
+CPU time (linux only): 186.57 seconds
 
 Welcome to the feature search program for CS205, Spring 2023
 
@@ -120,7 +182,8 @@ Choose an option:
 
 4
 Running small backward...
-Default rate is: 0.774
+Default rate is: 0.809
+Root of the tree (all features): 0.774
 
 Level 1
 On level 1, removed feature 5 with new accuracy 0.799
@@ -156,7 +219,7 @@ On level 10, removed feature 6 with new accuracy 0.81
 Best Features are: 6 10
 Best Accuracy: 0.973
 
-CPU time (linux only): 1.927 seconds
+CPU time (linux only): 2.0592 seconds
 
 Welcome to the feature search program for CS205, Spring 2023
 
@@ -172,7 +235,8 @@ Choose an option:
 
 5
 Running big backward...
-Default rate is: 0.7055
+Default rate is: 0.804
+Root of the tree (all features): 0.7055
 
 Level 1
 On level 1, removed feature 3 with new accuracy 0.713
@@ -238,7 +302,7 @@ On level 20, removed feature 15 with new accuracy 0.804
 Best Features are: 9 15
 Best Accuracy: 0.967
 
-CPU time (linux only): 43.202 seconds
+CPU time (linux only): 37.887 seconds
 
 Welcome to the feature search program for CS205, Spring 2023
 
@@ -253,7 +317,7 @@ Choose an option:
 0. Exit
 
 6
-Name of file (ex: data/xx.csv)data/heart_data_norm.csv
+Name of file (ex: data/xx.csv): data/heart_data_norm.csv
 
 Default rate is: 0.54455
 
@@ -278,16 +342,29 @@ On level 6, added feature 6 with accuracy 0.82178
 Level 7
 On level 7, added feature 11 with accuracy 0.80528
 
-detected drop 1, will terminate after 2
 Level 8
 On level 8, added feature 1 with accuracy 0.80528
 
-detected drop 2, will terminate after 2
+Level 9
+On level 9, added feature 8 with accuracy 0.80858
+
+Level 10
+On level 10, added feature 4 with accuracy 0.78548
+
+Level 11
+On level 11, added feature 3 with accuracy 0.77558
+
+Level 12
+On level 12, added feature 7 with accuracy 0.76898
+
+Level 13
+On level 13, added feature 5 with accuracy 0.75908
+
 
 Best Features are: 10 12 9 2 13 6
 Best Accuracy: 0.82178
 
-CPU time (linux only): 0.25275 seconds
+CPU time (linux only): 0.31542 seconds
 
 Welcome to the feature search program for CS205, Spring 2023
 
@@ -302,9 +379,10 @@ Choose an option:
 0. Exit
 
 7
-Name of file (ex: data/xx.csv)data/heart_data_norm.csv
+Name of file (ex: data/xx.csv): data/heart_data_norm.csv
 
-Default rate is: 0.75908
+Default rate is: 0.54455
+Root of the tree (all features): 0.75908
 
 Level 1
 On level 1, removed feature 10 with new accuracy 0.79868
@@ -349,7 +427,7 @@ On level 13, removed feature 12 with new accuracy 0.54455
 Best Features are: 1 2 3 4 6 7 8 9 11 12 13
 Best Accuracy: 0.80858
 
-CPU time (linux only): 0.33976 seconds
+CPU time (linux only): 0.33911 seconds
 
 Welcome to the feature search program for CS205, Spring 2023
 

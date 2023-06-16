@@ -91,7 +91,7 @@ void forwardSelection(file_data *fdat) {
             features.push_back(fToAdd); // update final vectors
         }
         else { cout << endl;}
-        if(BestLevel < bestSoFar){
+        if((fdat->dpt_size > 22)&&(BestLevel < bestSoFar)){
             drop++;
             cout << "detected drop " << drop << ", will terminate after 2" << endl;
         }
