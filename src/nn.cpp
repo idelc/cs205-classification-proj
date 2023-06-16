@@ -1,7 +1,9 @@
 #include "nn.h"
 #include "data.h"
+#include <algorithm>
 #include <float.h>
 #include <ostream>
+#include <cmath>
 
 #define CLASS_INDEX 0
 // #define DEBUG_MODE
@@ -9,7 +11,7 @@
 
 // Compute the accuracy using sel_features as a distance metric 
 double nn_eval(file_data *fdat, std::vector<unsigned> sel_feat) {
-    int accuracy = 0;
+    int total_correct = 0;
     // Test each point (by leaving it out)
     for (unsigned i = 0; i < fdat->total_dpts; i++) {
         #ifdef DEBUG_MODE
@@ -33,12 +35,14 @@ double nn_eval(file_data *fdat, std::vector<unsigned> sel_feat) {
         }
         // if the classes of the closest point and target point, i,
         // match, then knn has accurately classified the value.
-        // so increment the accuracy
+        // so increment the total_correct 
         if (classes_match(fdat, i, closest_pt)) {
-            accuracy++;
+            total_correct++;
         }
     }
-    return (accuracy + 0.0) / fdat->total_dpts;
+    double accuracy = (total_correct + 0.0) / fdat->total_dpts;
+    return std::max(accuracy, 1-accuracy);
+    // return (accuracy + 0.0) / fdat->total_dpts;
 }
 
 
@@ -68,7 +72,7 @@ double compute_distance(file_data *fdat, std::vector<unsigned> sel_feat, int x, 
 
     // Square root is not computed as it's not necessary
     // for this application
-    return dist;
+    return sqrt(dist);
 }
 
 
